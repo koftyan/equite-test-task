@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CcxtService } from 'src/ccxt/ccxt.service';
+import { CcxtService } from '../ccxt/ccxt.service';
 
 @Injectable()
 export class PriceService {

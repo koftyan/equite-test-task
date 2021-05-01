@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CcxtService } from 'src/ccxt/ccxt.service';
+import { CcxtService } from '../ccxt/ccxt.service';
 import { PriceController } from './price.controller';
 import { PriceService } from './price.service';
 
