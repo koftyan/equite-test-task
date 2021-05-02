@@ -25,7 +25,7 @@ describe('PriceController (e2e)', () => {
 
   const validBinanceUrl =
     '/price?exchange=binance&symbols[]=BTC/USDT&dates[]=2020-02-01';
-  it(`${validBinanceUrl} (GET) returns price for one symbol and given date`, async () => {
+  it(`${validBinanceUrl} (GET) returns price for one symbol and given date from Binance`, async () => {
     const { body } = await request(app.getHttpServer())
       .get(validBinanceUrl)
       .expect(200);
@@ -35,7 +35,7 @@ describe('PriceController (e2e)', () => {
   });
   const validBybitUrl =
     '/price?exchange=bybit&symbols[]=BTC/USDT&dates[]=2021-03-01';
-  it(`${validBybitUrl} (GET) returns price for one symbol and given date`, async () => {
+  it(`${validBybitUrl} (GET) returns price for one symbol and given date from Bybit`, async () => {
     const { body } = await request(app.getHttpServer())
       .get(validBybitUrl)
       .expect(200);
@@ -45,7 +45,7 @@ describe('PriceController (e2e)', () => {
   });
   const validBitmexUrl =
     '/price?exchange=bitmex&symbols[]=BTC/USD&dates[]=2020-02-01';
-  it(`${validBitmexUrl} (GET) returns price for one symbol and given date`, async () => {
+  it(`${validBitmexUrl} (GET) returns price for one symbol and given date from Bitmex`, async () => {
     const { body } = await request(app.getHttpServer())
       .get(validBitmexUrl)
       .expect(200);
@@ -55,7 +55,7 @@ describe('PriceController (e2e)', () => {
   });
   const validUrlWithManySymbolsAndManyDates =
     '/price?exchange=binance&symbols[]=BTC/USDT&symbols[]=ETH/BTC&dates[]=2020-02-01&dates[]=2020-04-01';
-  it(`${validUrlWithManySymbolsAndManyDates} (GET) returns price for one symbol and given date`, async () => {
+  it(`${validUrlWithManySymbolsAndManyDates} (GET) returns price for many symbols and dates`, async () => {
     const { body } = await request(app.getHttpServer())
       .get(validUrlWithManySymbolsAndManyDates)
       .expect(200);
@@ -72,7 +72,7 @@ describe('PriceController (e2e)', () => {
   });
   const validUrlWithGaps =
     '/price?exchange=binance&symbols[]=BTC/USDT&symbols[]=TWT/USDT&dates[]=2020-02-04';
-  it(`${validUrlWithGaps} (GET) returns price for one symbol and given date`, async () => {
+  it(`${validUrlWithGaps} (GET) returns price for many symbols and dates(with gaps)`, async () => {
     const { body } = await request(app.getHttpServer())
       .get(validUrlWithGaps)
       .expect(200);
@@ -84,7 +84,7 @@ describe('PriceController (e2e)', () => {
   });
   const urlWithInvalidDate =
     '/price?exchange=binance&symbols[]=BTC/USDT&dates[]=2020-02-32';
-  it(`${urlWithInvalidDate} (GET) returns price for one symbol and given date`, async () => {
+  it(`${urlWithInvalidDate} (GET) fails with error about wrong date`, async () => {
     const { body } = await request(app.getHttpServer())
       .get(urlWithInvalidDate)
       .expect(400);
@@ -94,7 +94,7 @@ describe('PriceController (e2e)', () => {
   });
   const urlWithInvalidSymbol =
     '/price?exchange=binance&symbols[]=NONE/NONE&dates[]=2020-02-01';
-  it(`${urlWithInvalidSymbol} (GET) returns price for one symbol and given date`, async () => {
+  it(`${urlWithInvalidSymbol} (GET) returns 'Invalid symbol' for wrong symbol`, async () => {
     const { body } = await request(app.getHttpServer())
       .get(urlWithInvalidSymbol)
       .expect(200);
@@ -102,7 +102,7 @@ describe('PriceController (e2e)', () => {
     expect(body['NONE/NONE']).toEqual('Invalid symbol');
   });
   const noParamsUrl = '/price';
-  it(`${noParamsUrl} (GET) fails with no params`, async () => {
+  it(`${noParamsUrl} (GET) fails for request with no params`, async () => {
     const { body } = await request(app.getHttpServer())
       .get(noParamsUrl)
       .expect(400);
