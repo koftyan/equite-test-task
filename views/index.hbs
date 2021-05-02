@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App</title>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link rel='stylesheet' href='./css/main.css'>
+    
+  </head>
+  <body>
+    <div id='app'>
+      <form id='reqForm'>
+        <select id='exchange' name='exchange'>
+          <option value='binance'>Binance</option>
+          <option value='bitmex'>Bitmex</option>
+          <option value='bybit'>Bybit</option>
+        </select>
+        <br />
+        <input type='text' id='symbols' name='symbols[]' placeholder="Enter symbols separated by comma, e.g. BTC/USDT,ADA/USDT"/>
+        <br />
+        <input type='text' id='dates' name='dates[]' placeholder="Enter dates separated by comma(in YYYY-MM-DD format), e.g. 2020-04-01,2019-09-11" />
+        <br />
+        <input type='submit' value='GO!'/>
+      </form>
+      <div id="viz"></div>
+    </div>
+    <script src='./js/main.js'></script>
+  </body>
+</html>
