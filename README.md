@@ -13,7 +13,9 @@ $ npm install
 $ npm run start
 ```
 ## Описание
-Запрос по пути вида:
+Приложение принимает запросы по пути `/price` в виде query string.
+
+Например, запрос по пути вида:
 
 ```http://localhost:3000/price?exchange=binance&symbols[]=BTC/USDT&symbols[]=ADA/USDT&dates[]=2020-02-01&dates[]=2021-01-01```
 
