@@ -7,18 +7,15 @@ reqForm.onsubmit = async function (e) {
     'symbols[]': formData.get('symbols[]').split(','),
     'dates[]': formData.get('dates[]').split(','),
   };
-  console.log(serialize(data));
   const query = serialize(data);
 
   const url = `http://localhost:3000/price?${query}`;
   let res;
   try {
     res = await (await fetch(url)).json();
-    console.log(res);
     if (res.statusCode && res.statusCode !== 200)
       throw new Error(res.message[0]);
     const lines = prepareData(res);
-    console.log(lines);
     draw(lines);
   } catch (e) {
     alert(e);

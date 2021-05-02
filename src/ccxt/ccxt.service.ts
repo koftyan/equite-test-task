@@ -29,7 +29,7 @@ export class CcxtService {
       for (const symbol of symbols) {
         const candles = await this.fetchCandlesForDates(
           exchange,
-          symbol,
+          symbol.trim(),
           dates,
         );
         prices[symbol] = candles;
